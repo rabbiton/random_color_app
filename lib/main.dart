@@ -26,7 +26,7 @@ class _MyHomeState extends State<MyHome> {
   Color _color = Colors.grey[300];
   Color themeTextColor = Colors.grey[900];
   List<Color> _colorList = [Color(0xFFE0E0E0)];
-  int pressButtonCounter = 0;
+  static int pressButtonCounter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,7 @@ class _MyHomeState extends State<MyHome> {
               print(_colorList);
             });
           },
+
           child: new Container(
             color: _color,
             child: new Text(
@@ -72,13 +73,11 @@ class _MyHomeState extends State<MyHome> {
               _color = _colorList[0];
             }
             else {
-              if (_colorList.length > 3) {
+              if (_colorList.length >= 3) {
                 pressButtonCounter++;
                 if (_colorList.length - (1 + pressButtonCounter) < 0) {
                   pressButtonCounter = 0;
-                  _colorList.clear();
-                  _colorList.add(Color(0xFFE0E0E0));
-                  _color = _colorList[0];
+                  _color = _colorList[_colorList.length - 1];
                 }
                 else {
                   _color =
